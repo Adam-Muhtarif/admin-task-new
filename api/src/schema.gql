@@ -1,0 +1,60 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Category {
+  createdAt: String!
+  id: Int!
+  name: String!
+  posts: [Post!]!
+  updatedAt: String!
+}
+
+input CreateCategoryInput {
+  name: String!
+}
+
+input CreatePostInput {
+  categoryId: Int!
+  content: String!
+  title: String!
+}
+
+type Mutation {
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  createPost(createPostInput: CreatePostInput!): Post!
+  removeCategory(id: Int!): Category!
+  removePost(id: Int!): Post!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
+  updatePost(updatePostInput: UpdatePostInput!): Post!
+}
+
+type Post {
+  category: Category!
+  categoryId: Int!
+  content: String!
+  createdAt: String!
+  id: Int!
+  title: String!
+  updatedAt: String!
+}
+
+type Query {
+  categories: [Category!]
+  category(id: Int!): Category
+  post(id: Int!): Post
+  posts: [Post!]
+  postsByCategory(id: Int!): [Post!]
+}
+
+input UpdateCategoryInput {
+  id: Int!
+  name: String!
+}
+
+input UpdatePostInput {
+  categoryId: Int
+  content: String
+  id: Int!
+  title: String
+}
