@@ -1,17 +1,23 @@
 import { Injectable } from '@nestjs/common';
+import { InjectQueue } from '@nestjs/bull';
+import { Queue } from 'bull';
 import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class PostService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    @InjectQueue('notifications') private readonly postQueue: Queue,
+  ) {}
 
   async create(createPostInput: CreatePostInput) {
-    return await this.prisma.post.create({
-      data: { ...createPostInput },
-      include: { category: true },
+    const createdPost = await this.prisma.post.create({
+      data: createPostInput,
     });
+    await this.postQueue.add('postCreate', createdPost);
+    return createdPost;
   }
 
   async findAll() {

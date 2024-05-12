@@ -15,9 +15,6 @@ export const CATEGORY_CREATE_MUTATION = gql`
   mutation CreateCategory($input: CreateCategoryInput!) {
     createCategory(createCategoryInput: $input) {
       id
-      name
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -27,8 +24,6 @@ export const CATEGORY_DELETE_MUTATION = gql`
     removeCategory(id: $id) {
       id
       name
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -43,4 +38,3 @@ export const CATEGORY_UPDATE_MUTATION = gql`
     }
   }
 `;
-

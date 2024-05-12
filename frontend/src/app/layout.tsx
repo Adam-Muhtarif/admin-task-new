@@ -1,12 +1,13 @@
+import { Suspense } from "react";
 import { DevtoolsProvider } from "@providers/devtools";
-import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerProvider from "@refinedev/nextjs-router";
-import { Metadata } from "next";
-import React, { Suspense } from "react";
 import { dataProvider } from "@providers/data-provider";
 import { ApolloWrapper } from "@providers/apollo-provider/ApolloWrapper";
 import { MantineProvider } from "@mantine/core";
+import { Refine } from "@refinedev/core";
+import { Metadata } from "next";
+
+import routerProvider from "@refinedev/nextjs-router";
 import Layout from "@components/customLayout/Layout";
 
 import "@mantine/core/styles.css";
@@ -37,6 +38,7 @@ export default function RootLayout({
                     routerProvider={routerProvider}
                     dataProvider={dataProvider}
                     options={{
+                      liveMode: "auto",
                       syncWithLocation: true,
                       warnWhenUnsavedChanges: true,
                       useNewQueryKeys: true,

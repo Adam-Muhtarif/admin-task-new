@@ -23,17 +23,6 @@ export const POST_CREATE_MUTATION = gql`
   mutation CreatePost($input: CreatePostInput!) {
     createPost(createPostInput: $input) {
       id
-      title
-      content
-      categoryId
-      createdAt
-      updatedAt
-      category {
-        id
-        name
-        createdAt
-        updatedAt
-      }
     }
   }
 `;
@@ -43,9 +32,6 @@ export const POST_DELETE_MUTATION = gql`
     removePost(id: $id) {
       id
       title
-      content
-      createdAt
-      updatedAt
     }
   }
 `;

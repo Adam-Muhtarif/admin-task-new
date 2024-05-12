@@ -9,8 +9,8 @@ export class PostResolver {
   constructor(private readonly postService: PostService) {}
 
   @Mutation(() => PostType)
-  createPost(@Args('createPostInput') createPostInput: CreatePostInput) {
-    return this.postService.create(createPostInput);
+  async createPost(@Args('createPostInput') createPostInput: CreatePostInput) {
+    return await this.postService.create(createPostInput);
   }
 
   @Query(() => [PostType], { name: 'posts', nullable: true })

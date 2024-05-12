@@ -50,13 +50,14 @@ export default function AddModal({
             variables: {
               input: inputs,
             },
-          }).then(() => refetch());
+          });
         } else alert(`fill the inputs`);
       }
     } catch (e) {
       console.log(e);
     } finally {
       close();
+      refetch();
       setInputs(null);
     }
   }
